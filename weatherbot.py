@@ -1,52 +1,35 @@
-import requests, json
-
-from jsonpath_ng import jsonpath, parse
-
-city_name = "Philadelphia"
-
-woeid_url = "https://www.metaweather.com/api/location/search/?query=" + city_name
-
-woeid_resp = requests.get(woeid_url)
-
-print(woeid_resp.content)
-
-woeid_resp_dict = json.loads(woeid_resp.content)
-
-woeid = woeid_resp_dict[0]["woeid"]
-
-print("the woeid is " + str(woeid))
+from intro import play_text,listen_to_user, intro_text
+from stt_enitity_recognizer import entity_extractor, date_text_converter,get_woeid,get_weather_data
 
 
-url = 'https://www.metaweather.com/api/location/' + str(woeid) +'/2020/03/07/'
 
-response = requests.get(url)
 
-resp_dict = json.loads(response.content)
+play_text(intro_text)
 
-path = parse('$..weather_state_name')
+spoken_text = listen_to_user()
 
-created_list = [match.value for match in path.find(resp_dict)]
-# print(len(created_list))
+city_name, date = entity_extractor(spoken_text)
 
-print(resp_dict[0])
-print(resp_dict[0]['weather_state_name'])
+city_name = city_name[0]
 
-# Import the required module for text 
-# to speech conversion 
-from gtts import gTTS 
+date = date_text_converter(date)
 
-# This module is imported so that we can 
-# play the converted audio 
-# import os 
+print(date)
 
-# The text that you want to convert to audio 
-mytext = 'the weather in '+ city_name+' is ' + str(resp_dict[0]['weather_state_name'])
+# Weather_condition = get_weather_data(date,get_woeid(city_name))
 
-import pyglet
 
-tts = gTTS(text=mytext, lang='en')
-filename = 'temp.mp3'
-tts.save(filename)
+# weather_text = "As per the last updated value, the weather in " + str(city_name) + " was " + str(Weather_condition['weather_state_name'])
 
-import os
-os.system("afplay temp.mp3") 
+
+# play_text(weather_text)
+
+
+
+
+
+# woeid = get_woeid(city_name)
+
+# weather_data = get_weather_data(date,woeid)
+
+# print(weather_data['weather_state_name'])
