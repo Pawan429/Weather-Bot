@@ -1,5 +1,6 @@
 # Shitzu the Weather-Bot
-Main Idea : create a serverless Interactive Weather Bot(using as many python libraries as needed :P)  
+
+*Main Idea :* create a serverless Interactive Weather Bot(using as many python libraries as needed :P)  
 
 For the listening(speech-to-text) & Speaking ability(Text-to-Speech), I made use of speech_recognition, gTTS(library) in python. Thank you Google. :)
 
