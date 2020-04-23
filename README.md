@@ -13,6 +13,8 @@ The bot will ping the open-source Weather api : https://www.metaweather.com/ to 
 
 I used a pretrained spacy library for entity recognition. 
 
+Thank you timefhuman - package(Python Library) for converting my date entities to numbers!
+
 It speaks out the weather status in a structure that is hardcoded. 
 
 It is written in a Macbook air. 
