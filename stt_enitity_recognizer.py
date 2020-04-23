@@ -3,6 +3,7 @@ import pandas as pd
 import requests, json
 from jsonpath_ng import jsonpath, parse
 import datetime
+from timefhuman import timefhuman
 
 today = datetime.date.today()
 yesterday = today - datetime.timedelta(days = 1)
@@ -19,7 +20,9 @@ def date_text_converter(date_entity):
 	else:
 		new_date_entity = date_entity[0]
 
-	return(new_date_entity)
+	new_date_entity = timefhuman(new_date_entity)
+
+	return(new_date_entity.strftime("%Y/%m/%d"))
 
 
 def entity_extractor(text):
@@ -50,7 +53,7 @@ def get_woeid(city_name):
 
 
 def get_weather_data(date,woeid):
-	url = 'https://www.metaweather.com/api/location/' + str(woeid) + date
+	url = 'https://www.metaweather.com/api/location/' + str(woeid) +"/" +date
 
 	response = requests.get(url)
 
@@ -62,8 +65,21 @@ def get_weather_data(date,woeid):
 	# print(len(created_list))
 
 	# print(resp_dict[0])
-	return(resp_dict[0])
+	return(most_frequent(created_list))
 
+
+#most frequent element in list
+def most_frequent(List): 
+    counter = 0
+    num = List[0] 
+      
+    for i in List: 
+        curr_frequency = List.count(i) 
+        if(curr_frequency> counter): 
+            counter = curr_frequency 
+            num = i 
+  
+    return num
 
 
 
