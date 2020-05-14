@@ -3,8 +3,7 @@
 **Main Idea :** <br>
 To create a serverless Interactive Weather Bot(using as many python libraries as needed :P)  
 
-![Logical overview of the architecture](https://drive.google.com/file/d/1wao_UeAbO1l2keDIBPgMOYGxbLXQ7sPV/view?usp=sharing)
-
+<img src= 'overview.png'>
 **How to use**<br>
 Ask for weather status of a single city for a single date. 
 
